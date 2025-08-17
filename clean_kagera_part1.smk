@@ -19,10 +19,10 @@ but missing from the fastq samples.
 Part 2 uses the flagged samples from part 1 plus a table of manual corrections
 to fix the names of samples in the metadata, fastq, and AA table files.
 '''
-output_folder='kagera_stats_v5'
+output_folder='kagera_stats_v6'
 rule all:
 	input:
-		odd_AA=expand(output_folder+'/odd_AA_tables/extra_{year}_AA_samples.tsv', year=['2021', '2022', '2023'])
+		odd_AA=expand(output_folder+'/odd_AA_tables/extra_{year}_AA_samples.txt', year=['2021', '2022', '2023'])
 
 rule filter_kagera_metadata:
 	'''
@@ -53,9 +53,9 @@ rule compare_file_lists:
 		metadata_dict_path=output_folder+'/sample_dicts/metadata_dict_{year}.pkl',
 		aa_dict_path=output_folder+'/sample_dicts/AA_dict_{year}.pkl',
 		fastq_dict_path=output_folder+'/sample_dicts/fastq_dict_{year}.pkl',
-		odd_AA=output_folder+'/odd_AA_tables/extra_{year}_AA_samples.tsv',
-		odd_fastq=output_folder+'/odd_fastq_files/missing_{year}_fastq_samples.tsv',
-		stats=output_folder+'/sample_comparison_stats/{year}_sample_comparison_stats.tsv'
+		odd_AA=output_folder+'/odd_AA_tables/extra_{year}_AA_samples.txt',
+		odd_fastq=output_folder+'/odd_fastq_files/missing_{year}_fastq_samples.txt',
+		stats=output_folder+'/sample_comparison_stats/{year}_sample_comparison_stats.txt'
 	script:
 		'scripts/compare_file_lists.py'
 

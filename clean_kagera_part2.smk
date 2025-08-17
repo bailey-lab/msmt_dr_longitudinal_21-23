@@ -4,7 +4,7 @@ candidates.py and the odd_fastq_files and odd_AA_tables outputs of step 1) to
 fix the 2021, 2022, and 2023 metadata, AA tables, and fastq file entries. For
 '''
 
-output_folder='kagera_stats_v5'
+output_folder='kagera_stats_v6'
 
 rule all:
 	input:
