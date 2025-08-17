@@ -26,7 +26,7 @@ rule clean_kagera:
 	params:
 		year='{year}'
 	output:
-		cleaned_metadata=output_folder+'/{year}_cleaned_kagera_metadata.csv',
+		cleaned_metadata=output_folder+'/cleaned_metadata/{year}_cleaned_kagera_metadata.csv',
 		cleaned_aa_coverage=output_folder+'/cleaned_AA_tables/{year}_AA_tables/coverage_AA_table.csv',
 		cleaned_aa_reference=output_folder+'/cleaned_AA_tables/{year}_AA_tables/reference_AA_table.csv',
 		cleaned_aa_alternate=output_folder+'/cleaned_AA_tables/{year}_AA_tables/alternate_AA_table.csv',

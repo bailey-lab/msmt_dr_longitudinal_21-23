@@ -2356,6 +2356,8 @@ cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sh
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT226-EMS-2023-MSMT-1_R1_001.fastq.gz KGBR-BUT-226-2023-MSMT-1_R1_001.fastq.gz
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT224-DDJ-2023-MSMT-1_R2_001.fastq.gz KGBR-BUT-224-2023-MSMT-1_R2_001.fastq.gz
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT224-DDJ-2023-MSMT-1_R1_001.fastq.gz KGBR-BUT-224-2023-MSMT-1_R1_001.fastq.gz
+cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT1203-AKR-2023-MSMT-1_R2_001.fastq.gz KGBR-BUT-120-2023-MSMT-1_R2_001.fastq.gz
+cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT1203-AKR-2023-MSMT-1_R1_001.fastq.gz KGBR-BUT-120-2023-MSMT-1_R1_001.fastq.gz
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT223-AAR-2023-MSMT-1_R2_001.fastq.gz KGBR-BUT-223-2023-MSMT-1_R2_001.fastq.gz
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT223-AAR-2023-MSMT-1_R1_001.fastq.gz KGBR-BUT-223-2023-MSMT-1_R1_001.fastq.gz
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT222-MAA-2023-MSMT-1_R2_001.fastq.gz KGBR-BUT-222-2023-MSMT-1_R2_001.fastq.gz
@@ -2484,8 +2486,6 @@ cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sh
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT124-BAP-2023-MSMT-1_R1_001.fastq.gz KGBR-BUT-124-2023-MSMT-1_R1_001.fastq.gz
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT121-VAJ-2023-MSMT-1_R2_001.fastq.gz KGBR-BUT-121-2023-MSMT-1_R2_001.fastq.gz
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT121-VAJ-2023-MSMT-1_R1_001.fastq.gz KGBR-BUT-121-2023-MSMT-1_R1_001.fastq.gz
-cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT120-BJE-2023-MSMT-1_R2_001.fastq.gz KGBR-BUT-120-2023-MSMT-1_R2_001.fastq.gz
-cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT120-BJE-2023-MSMT-1_R1_001.fastq.gz KGBR-BUT-120-2023-MSMT-1_R1_001.fastq.gz
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT119-MSN-2023-MSMT-1_R2_001.fastq.gz KGBR-BUT-119-2023-MSMT-1_R2_001.fastq.gz
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT119-MSN-2023-MSMT-1_R1_001.fastq.gz KGBR-BUT-119-2023-MSMT-1_R1_001.fastq.gz
 cp sftp://msmt/tank/msmt_share/processed_data/asimkin/msmt_2023/merged_sample_sheets/mergedfastq/KGBR-BUT118-FKE-2023-MSMT-1_R2_001.fastq.gz KGBR-BUT-118-2023-MSMT-1_R2_001.fastq.gz
