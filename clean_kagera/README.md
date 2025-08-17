@@ -1,6 +1,4 @@
-# msmt_dr_longitudinal_21-23
-repo for a manuscript describing msmt longitudinal data from 2021-2023
-
+# clean_kagera
 The analysis for this manuscript originally included metadata, AA tables, and
 fastq files that were not part of the final manuscript. This is because
 sequencing is not yet complete for other regions of Tanzania outside of Kagera.
