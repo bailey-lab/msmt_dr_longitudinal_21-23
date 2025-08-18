@@ -19,7 +19,7 @@ publication quality images. Calculates amino acid prevalences in the process.
 Uses this github repo as a template:
 https://github.com/simkin-bioinformatics/AA_table_visualization
 A more detailed description (along with copies of input scripts) can be
-found in the plot_dynamic_maps folder.
+found in the AA_table_visualization folder.
 
 ## Step 3: Plot Static Maps
 This step takes uses the amino acid prevalences from step 2 to generate high
