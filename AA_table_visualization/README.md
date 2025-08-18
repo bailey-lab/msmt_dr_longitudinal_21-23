@@ -9,10 +9,11 @@ I've run the pipeline for 2021, 2022, and 2023 datasets. Inputs include:
  - cleaned_metadata: copied from clean_kagera/kagera_stats_v6/cleaned_metadata
  - longitudinal_AA_tables: copied from clean_kagera/kagera_stats_v6/cleaned_
    filtered_AA_tables
- - variant_graphing.py - copied from AA_table_visualization. Variables are
-   filled out to match the 2021 dataset
+ - variant_graphing.ipynb - copied from AA_table_visualization. Variables are
+   filled out to match the 2021 3_1 dataset but can easily be substituted with
+   other years and filtering thresholds
 
-Outputs are generated for each year, in the format (year)_(coverage)_(alternate)_
+Outputs are generated for each year, in the format year_coverage_alternate_
 output, where coverage and alternate are thresholds used to consider a mutation
 'present' within a sample (if coverage and alternate UMI counts meet or exceed the
 respective threshold numbers)', 'covered' (if coverage UMI count meets the
