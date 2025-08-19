@@ -24,15 +24,16 @@ def get_muts(prevalence_file):
 	muts=[mut.replace('-', '_') for mut in columns[3:]]
 	return muts
 
-prevalence_file='/home/alfred/msmt_re_analysis_with_cleaned_metadata/v3_08-11-25_official_ms_github/msmt_dr_longitudinal_21-23/AA_table_visualization/2021_3_1_output/prevalence_summary.tsv'
+year='2021'
+threshold='3_1'
+
+prevalence_file='/home/alfred/msmt_re_analysis_with_cleaned_metadata/v3_08-11-25_official_ms_github/msmt_dr_longitudinal_21-23/AA_table_visualization/'+year+'_'+threshold+'_output/prevalence_summary.tsv'
 mutations=get_muts(prevalence_file)
 print('mutations are', mutations)
 
-
-
 rule all:
 	input:
-		final_files=expand('kagera_graphs_{year}/png_plots/kagera_{mutation}_{year}.png', mutation=mutations, year=['2021'])
+		final_files=expand('kagera_graphs_'+year+'_'+threshold+'/png_plots/kagera_{mutation}_'+year+'_'+threshold+'.png', mutation=mutations)
 
 rule convert_prevalence_table:
 	input:
@@ -43,21 +44,21 @@ rule convert_prevalence_table:
 		latitude_min=min_lat,
 		latitude_max=max_lat
 	output:
-		R_muts='R_tables/muts_district_{year}.csv'
+		R_muts='R_tables/muts_district_'+year+'.csv'
 	script:
 		'python_scripts/prevalence_to_R.py'
 
 rule graph_kagera:
 	input:
-		input_csv='R_tables/muts_district_{year}.csv'
+		input_csv='R_tables/muts_district_'+year+'.csv'
 	params:
 		longitude_min=min_long,
 		longitude_max=max_long,
 		latitude_min=min_lat,
 		latitude_max=max_lat
 	output:
-		output_png='kagera_graphs_{year}/png_plots/kagera_{mutation}_{year}.png',
-		output_svg='kagera_graphs_{year}/svg_plots/kagera_{mutation}_{year}.svg'
+		output_png='kagera_graphs_'+year+'_'+threshold+'/png_plots/kagera_{mutation}_'+year+'_'+threshold+'.png',
+		output_svg='kagera_graphs_'+year+'_'+threshold+'/svg_plots/kagera_{mutation}_'+year+'_'+threshold+'.svg'
 	conda:
 		"envs/R_environment.yml"
 	script:

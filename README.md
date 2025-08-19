@@ -12,11 +12,13 @@ the clean_kagera folder. Because these uncleaned input files are not part of
 this study, some of the input files for these steps are not included in this
 repo.
 
-## Step 2: Plot Dynamic Maps
-This step takes AA tables and metadata from step 1 and adds dynamic maps in
-plotly. These maps are useful for interactive scrolling but less useful for
-publication quality images. Calculates amino acid prevalences in the process.
-Uses this github repo as a template:
+## Step 2: Calculate Prevalences and Plot Dynamic Maps
+This step takes AA tables and metadata from step 1 and calculates the fraction
+of samples that have each mutation at a given geographic location (in our case
+a district of Tanzania, which is a level 2 identifier, akin to a county within
+the USA). Amino acid prevalences in the process.adds dynamic maps in plotly.
+These maps are useful for interactive scrolling but less useful for publication
+quality images. Uses this github repo as a template:
 https://github.com/simkin-bioinformatics/AA_table_visualization
 A more detailed description (along with copies of input scripts) can be
 found in the AA_table_visualization folder.
@@ -24,4 +26,4 @@ found in the AA_table_visualization folder.
 ## Step 3: Plot Static Maps
 This step takes uses the amino acid prevalences from step 2 to generate high
 quality static maps in R. A more detailed description (along with copies of
-input scripts) can be found in the plot_dynamic_maps folder.
+input scripts) can be found in the plot_static_maps folder.
