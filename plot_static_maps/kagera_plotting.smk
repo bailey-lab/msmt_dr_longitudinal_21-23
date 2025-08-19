@@ -13,10 +13,6 @@ Among the hard-coded features:
 2. geographic region
 3. neighboring country labels
 '''
-min_long=30.3
-max_long=32
-min_lat=-3.4
-max_lat=-0.89
 
 
 def get_muts(prevalence_file):
@@ -24,12 +20,21 @@ def get_muts(prevalence_file):
 	muts=[mut.replace('-', '_') for mut in columns[3:]]
 	return muts
 
+
+#these 7 lines are parameters that a user might want to edit - the minimum and
+#maximum longitudes and latitudes, the year, and the thresholds used by the
+#original prevalence files. If the path to the original prevalence file changes,
+#this should be edited also.
+min_long=30.3
+max_long=32
+min_lat=-3.4
+max_lat=-0.89
 year='2021'
 threshold='3_1'
-
 prevalence_file='/home/alfred/msmt_re_analysis_with_cleaned_metadata/v3_08-11-25_official_ms_github/msmt_dr_longitudinal_21-23/AA_table_visualization/'+year+'_'+threshold+'_output/prevalence_summary.tsv'
+
+
 mutations=get_muts(prevalence_file)
-print('mutations are', mutations)
 
 rule all:
 	input:
