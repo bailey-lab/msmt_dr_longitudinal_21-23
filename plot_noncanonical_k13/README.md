@@ -29,3 +29,23 @@ coverage filters is arbitrarily selected, and the alternate count is set to 0.
 Finally, if a sample fails both filters, coverage and alternate counts are both
 set to 0. The output AA tables are suitable for downstream parsing with the
 AA_table_visualization and plot_static_maps pipelines.
+
+## Downstream Analysis
+At the risk of drowning in redundant files, I copied all of the scripts and key
+files from both AA_table_visualization and plot_static_maps. These included:
+ - the src folder from AA_table_visualization
+ - the variant_graphing.ipynb jupyter notebook from AA_table_visualization
+ - the cleaned_metadata folder from AA_table_visualization
+ - the R_scripts folder from plot_static_maps
+ - the python_scripts folder from plot_static_maps
+ - the envs folder from plot_static_maps
+ - the input_shape_files folder from plot_static_maps
+ - the kagera_plotting.smk file from plot_static_maps
+
+I modified the variant_graphing.ipynb jupyter notebook and the
+kagera_plotting.smk snakemake file slightly to accept the output from
+noncanonical_AA_tables, and ran both of these pipelines to generate figure 2
+graphs. The output of the Jupyter notebook (dynamic graphs and prevalence
+tables) is stored in year_10_3_noncanonical where year is 2021, 2022, and 2023.
+The output of the kagera_plotting.smk (high quality Figure 2 images) is stored
+in kagera_graphs_year_10_3, where year is 2021, 2022, and 2023.
