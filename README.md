@@ -27,3 +27,13 @@ found in the AA_table_visualization folder.
 This step takes uses the amino acid prevalences from step 2 to generate high
 quality static maps in R. A more detailed description (along with copies of
 input scripts) can be found in the plot_static_maps folder.
+
+## Step 4: Plot noncanonical K13
+This step is similar to step 3 in that it uses the amino acid prevalences from
+step 2 to generate high quality static maps in R. However, instead of treating
+all of the mutations in the propeller domain of k13 as separate mutations, it
+searches for novel k13 propeller domain mutations. This is accomplished by
+creating a slightly modified AA table prior to generating static maps in R. A
+more detailed description and script can be found in the plot_noncanonical_k13
+folder.
+
