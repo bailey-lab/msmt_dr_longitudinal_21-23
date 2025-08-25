@@ -1,7 +1,9 @@
 '''
-It feels a little silly to have a snakemake program that runs a single script
+It feels a little silly to have a snakemake program that runs a single script,
 but it is nice to see inputs and outputs clearly labeled and to have automatic
-output folder creation.
+output folder creation, as well as the automatic and parallelized analysis of
+all 3 years and automatic determination of whether the script needs to be rerun
+or not.
 '''
 
 rule all:

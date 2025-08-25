@@ -33,7 +33,7 @@ blacklist=['k13-Ala675Val', 'k13-Arg622Ile', 'k13-Cys580Tyr', 'k13-Pro574Leu',
 'k13-Gly449Ala', 'k13-Phe446Ile', 'k13-Pro441Leu', 'k13-Ala578Ser']
 labels=['Gene ID', 'Gene', 'Mutation Name', 'ExonicFunc', 'AA Change',
 'Targeted']
-output_header=['PF3D7_1343700', 'k13', 'k13-prop', 'missense_variant',
+output_header=['PF3D7_1343700', 'k13', 'k13-all350all', 'missense_variant',
 'all350all', 'No']
 
 
