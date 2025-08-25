@@ -14,7 +14,8 @@ rule plot_noncanonical_k13:
 		alternate_input='canonical_AA_tables/{year}_AA_tables/alternate_AA_table.csv'
 	params:
 		coverage_threshold=10,
-		alternate_threshold=3
+		alternate_threshold=3,
+		propeller_start=350
 	output:
 		coverage_output='noncanonical_AA_tables/{year}_AA_tables/coverage_AA_table.csv',
 		alternate_output='noncanonical_AA_tables/{year}_AA_tables/alternate_AA_table.csv'

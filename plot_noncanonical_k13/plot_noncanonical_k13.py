@@ -18,6 +18,7 @@ coverage_input=snakemake.input.coverage_input
 alternate_input=snakemake.input.alternate_input
 coverage_threshold=snakemake.params.coverage_threshold
 alternate_threshold=snakemake.params.alternate_threshold
+propeller_start=snakemake.params.propeller_start
 coverage_output=snakemake.output.coverage_output
 alternate_output=snakemake.output.alternate_output
 
@@ -72,7 +73,7 @@ def get_covered_mutations(blacklist, coverage_threshold, header, line):
 			gene='-'.join(mutation.split('-')[:-1])
 			aa_change=mutation.split('-')[-1]
 			pos=int(aa_change[3:-3])
-			if mutation not in blacklist and pos>349 and gene=='k13':
+			if mutation not in blacklist and pos>=propeller_start and gene=='k13':
 				covered_columns.append(column_number)
 #	if line[0]=='KGKA-BKG-222-2021-MSMT-1':
 #		print('in cov function')
