@@ -9,9 +9,12 @@ during variant_graphing step of miptools).
 regions.
 
 Among the hard-coded features:
-1. shape file
-2. geographic region
-3. neighboring country labels
+1. Location of prevalence summary file
+2. year
+3. threshold
+4. shape file
+5. geographic region
+6. neighboring country labels
 '''
 
 

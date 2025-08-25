@@ -9,9 +9,12 @@ during variant_graphing step of miptools).
 regions.
 
 Among the hard-coded features:
-1. shape file
-2. geographic region
-3. neighboring country labels
+1. Location of prevalence summary file
+2. year
+3. threshold
+4. shape file
+5. geographic region
+6. neighboring country labels
 '''
 
 
@@ -29,9 +32,9 @@ min_long=30.3
 max_long=32
 min_lat=-3.4
 max_lat=-0.89
-year='2021'
-threshold='3_1'
-prevalence_file='/home/alfred/msmt_re_analysis_with_cleaned_metadata/v3_08-11-25_official_ms_github/msmt_dr_longitudinal_21-23/AA_table_visualization/'+year+'_'+threshold+'_output/prevalence_summary.tsv'
+year='2023'
+threshold='10_3'
+prevalence_file='/home/alfred/msmt_re_analysis_with_cleaned_metadata/v3_08-11-25_official_ms_github/msmt_dr_longitudinal_21-23/plot_noncanonical_k13/'+year+'_'+threshold+'_noncanonical/prevalence_summary.tsv'
 
 
 mutations=get_muts(prevalence_file)
