@@ -19,7 +19,10 @@ rule plot_noncanonical_k13:
 		alternate_threshold=3,
 		propeller_start=350
 	output:
-		coverage_output='noncanonical_AA_tables/{year}_AA_tables/coverage_AA_table.csv',
-		alternate_output='noncanonical_AA_tables/{year}_AA_tables/alternate_AA_table.csv'
+		coverage_final='noncanonical_AA_tables/{year}_AA_tables/coverage_AA_table.csv',
+		alternate_final='noncanonical_AA_tables/{year}_AA_tables/alternate_AA_table.csv',
+		coverage_propeller='k13_novel_propeller_AA_tables/{year}_AA_tables/coverage_AA_table.csv',
+		alternate_propeller='k13_novel_propeller_AA_tables/{year}_AA_tables/alternate_AA_table.csv',
+		distributions='noncanonical_AA_tables/{year}_AA_tables/{year}_distributions.tsv'
 	script:
 		'plot_noncanonical_k13.py'

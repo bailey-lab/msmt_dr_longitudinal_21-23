@@ -19,8 +19,11 @@ alternate_input=snakemake.input.alternate_input
 coverage_threshold=snakemake.params.coverage_threshold
 alternate_threshold=snakemake.params.alternate_threshold
 propeller_start=snakemake.params.propeller_start
-coverage_output=snakemake.output.coverage_output
-alternate_output=snakemake.output.alternate_output
+coverage_final=snakemake.output.coverage_final
+alternate_final=snakemake.output.alternate_final
+coverage_propeller=snakemake.output.coverage_propeller
+alternate_propeller=snakemake.output.alternate_propeller
+distribution_file=snakemake.output.distributions
 
 coverage_list=[line.strip().split(',') for line in open(coverage_input)]
 alternate_list=[line.strip().split(',') for line in open(alternate_input)]
@@ -68,7 +71,7 @@ def get_covered_mutations(blacklist, coverage_threshold, header, line):
 	'''
 	covered_columns=[]
 	for column_number, column in enumerate(line):
-		if column_number>0 and int(float(column))>coverage_threshold:
+		if column_number>0 and int(float(column))>=coverage_threshold:
 			mutation=header[2][column_number]
 			gene='-'.join(mutation.split('-')[:-1])
 			aa_change=mutation.split('-')[-1]
@@ -90,7 +93,7 @@ def get_alternate_mutations(alternate_threshold, coverage_columns, line):
 	highest_alt=-1
 	for column_number in coverage_columns:
 		alt_count=int(float(line[column_number]))
-		if alt_count>max_alt_count and alt_count>alternate_threshold:
+		if alt_count>max_alt_count and alt_count>=alternate_threshold:
 			highest_alt=column_number
 #	if line[0]=='KGKA-BKG-222-2021-MSMT-1':
 #		print('in alt function')
@@ -100,9 +103,11 @@ def get_alternate_mutations(alternate_threshold, coverage_columns, line):
 
 def parse_tables(coverage_values, alternate_values, missense_header):
 	results=[]
+	all_covered=[0]
 	for line_number, cov_line in enumerate(coverage_values):
 		alt_line=alternate_values[line_number]
 		covered_columns=get_covered_mutations(blacklist, coverage_threshold, missense_header, cov_line)
+		all_covered.extend(covered_columns)
 		alt_column=get_alternate_mutations(alternate_threshold, covered_columns, alt_line)
 		best_cov, best_alt=0, 0
 		sample=cov_line[0]
@@ -114,14 +119,69 @@ def parse_tables(coverage_values, alternate_values, missense_header):
 			best_cov=cov_line[covered_columns[0]]
 		print('sample is', sample, 'best cov is', best_cov, 'best alt is', best_alt)
 		results.append([sample, best_cov, best_alt])
-	return results
+	return results, set(all_covered)
 
-def write_output(output_path, results, index_number):
+def write_values(all_covered, value_list, output_file):
+	'''
+	A helper function for write_covered - iterates through a list of values and
+	prints out any columns that are in all_covered
+	'''
+	for line in value_list:
+		output_line=[]
+		for column_number in all_covered:
+			output_line.append(line[column_number])
+		output_file.write(','.join(output_line)+'\n')
+
+def write_covered(all_covered, missense_header, value_list, output_path):
+	'''
+	outputs AA tables of all covered mutations in the propeller domain of k13
+	'''
+	output_file=open(output_path, 'w')
+	write_values(all_covered, missense_header, output_file)
+	write_values(all_covered, value_list, output_file)
+
+def get_distributions(all_covered, missense_header, coverage_list, alternate_list, output_path):
+	'''
+	gets the number of samples that have each type of mutation
+	'''
+	output_file=open(output_path, 'w')
+	count_dict={}
+	for line_number, line in enumerate(missense_header):
+		if line_number==2:
+			muts=line
+			print('muts are', muts)
+	for line_number, cov_line in enumerate(coverage_list):
+		alt_line=alternate_list[line_number]
+		for column_number in all_covered[1:]:
+			mut=muts[column_number]
+			cov_value=int(float(cov_line[column_number]))
+			alt_value=int(float(alt_line[column_number]))
+			if cov_value>=coverage_threshold and alt_value>=alternate_threshold:
+				count_dict[mut]=count_dict.setdefault(mut, 0)+1
+	for mut in count_dict:
+		output_file.write(mut+'\t'+str(count_dict[mut])+'\n')
+
+def write_final(output_path, results, index_number):
 	output_file=open(output_path, 'w')
 	for header_number, header_line in enumerate(output_header):
 		output_file.write(labels[header_number]+','+header_line+'\n')
 	for result_line in results:
 		output_file.write(f'{result_line[0]},{result_line[index_number]}\n')
+
+def special_sort(all_covered, missense_header):
+	'''
+	sorts columns by amino acid position and returns the sorted list. Ignores
+	unparseable first column.
+	'''
+	mut_list=[]
+	for column_number in all_covered:
+		if column_number!=0:
+			mut=missense_header[2][column_number]
+			gene='-'.join(mut.split('-')[:-1])
+			pos=int(mut.split('-')[-1][3:-3])
+			mut_list.append([gene, pos, column_number])
+	print('mut list is', mut_list)
+	return [0]+[item[-1] for item in sorted(mut_list)]
 
 
 coverage_values=coverage_list[6:]
@@ -129,6 +189,10 @@ alternate_values=alternate_list[6:]
 header=coverage_list[:6]
 coverage_values, missense_header=filter_missense(header, coverage_values)
 alternate_values, junk=filter_missense(header, alternate_values)
-results=parse_tables(coverage_values, alternate_values, missense_header)
-write_output(coverage_output, results, 1)
-write_output(alternate_output, results, 2)
+results, all_covered=parse_tables(coverage_values, alternate_values, missense_header)
+all_covered=special_sort(all_covered, missense_header)
+write_covered(all_covered, missense_header, coverage_values, coverage_propeller)
+write_covered(all_covered, missense_header, alternate_values, alternate_propeller)
+write_final(coverage_final, results, 1)
+write_final(alternate_final, results, 2)
+get_distributions(all_covered, missense_header, coverage_values, alternate_values, distribution_file)
