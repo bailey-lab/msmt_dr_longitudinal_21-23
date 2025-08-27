@@ -16,9 +16,9 @@ repo.
 This step takes AA tables and metadata from step 1 and calculates the fraction
 of samples that have each mutation at a given geographic location (in our case
 a district of Tanzania, which is a level 2 identifier, akin to a county within
-the USA). Amino acid prevalences in the process.adds dynamic maps in plotly.
-These maps are useful for interactive scrolling but less useful for publication
-quality images. Uses this github repo as a template:
+the USA). This step calculates amino acid prevalences in the process, and adds
+dynamic maps in plotly. These maps are useful for interactive scrolling but less
+useful for publication quality images. Uses this github repo as a template:
 https://github.com/simkin-bioinformatics/AA_table_visualization
 A more detailed description (along with copies of input scripts) can be
 found in the AA_table_visualization folder.
@@ -37,3 +37,7 @@ creating a slightly modified AA table prior to generating static maps in R. A
 more detailed description and script can be found in the plot_noncanonical_k13
 folder.
 
+## Step 5: generate confidence intervals
+This is a very small step and adds confidence intervals to the prevalence tables
+generated in step 2. A more detailed description (along with input and output
+files) can be found in the AA_table_visualization folder.
