@@ -7,7 +7,12 @@ samples have at least one noncanonical K13 propeller domain mutation.
 The snakemake program plot_noncanonical_k13.smk executes the python script
 plot_noncanonical_k13.py which takes canonical_AA_tables (copied from
 clean_kagera/kagera_stats_v6/cleaned_filtered_AA_tables) and generates
-noncanonical_AA_tables as output.
+noncanonical_AA_tables (which consists of a single column listing the UMI counts
+associated with the most abundant mutation that passes coverage thresholds) as
+output for graphing. This folder also includes distributions - the number of
+samples that had 'passing' UMI counts for each mutation. Finally, the program
+generates k13_novel_propeller_AA_tables which give the UMI counts of all novel
+propeller domain mutations.
 
 ## Filtering criteria/algorithm
 The script iterates through the AA tables and looks for k13 mutations in the

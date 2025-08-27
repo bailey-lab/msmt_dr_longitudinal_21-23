@@ -140,6 +140,14 @@ def write_covered(all_covered, missense_header, value_list, output_path):
 	write_values(all_covered, missense_header, output_file)
 	write_values(all_covered, value_list, output_file)
 
+def special_sort(mut_list):
+	sorting_list=[]
+	for mut in mut_list:
+		gene='-'.join(mut.split('-')[:-1])
+		pos=int(mut.split('-')[-1][3:-3])
+		sorting_list.append([gene, pos, mut])
+	return [item[-1] for item in sorted(sorting_list)]
+
 def get_distributions(all_covered, missense_header, coverage_list, alternate_list, output_path):
 	'''
 	gets the number of samples that have each type of mutation
@@ -158,7 +166,7 @@ def get_distributions(all_covered, missense_header, coverage_list, alternate_lis
 			alt_value=int(float(alt_line[column_number]))
 			if cov_value>=coverage_threshold and alt_value>=alternate_threshold:
 				count_dict[mut]=count_dict.setdefault(mut, 0)+1
-	for mut in count_dict:
+	for mut in special_sort(list(count_dict.keys())):
 		output_file.write(mut+'\t'+str(count_dict[mut])+'\n')
 
 def write_final(output_path, results, index_number):
@@ -168,7 +176,8 @@ def write_final(output_path, results, index_number):
 	for result_line in results:
 		output_file.write(f'{result_line[0]},{result_line[index_number]}\n')
 
-def special_sort(all_covered, missense_header):
+
+def all_covered_sort(all_covered, missense_header):
 	'''
 	sorts columns by amino acid position and returns the sorted list. Ignores
 	unparseable first column.
@@ -190,7 +199,7 @@ header=coverage_list[:6]
 coverage_values, missense_header=filter_missense(header, coverage_values)
 alternate_values, junk=filter_missense(header, alternate_values)
 results, all_covered=parse_tables(coverage_values, alternate_values, missense_header)
-all_covered=special_sort(all_covered, missense_header)
+all_covered=all_covered_sort(all_covered, missense_header)
 write_covered(all_covered, missense_header, coverage_values, coverage_propeller)
 write_covered(all_covered, missense_header, alternate_values, alternate_propeller)
 write_final(coverage_final, results, 1)
