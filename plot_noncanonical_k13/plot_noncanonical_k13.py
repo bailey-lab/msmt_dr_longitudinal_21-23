@@ -154,6 +154,7 @@ def get_distributions(all_covered, missense_header, coverage_list, alternate_lis
 	'''
 	output_file=open(output_path, 'w')
 	count_dict={}
+	total_count=0
 	for line_number, line in enumerate(missense_header):
 		if line_number==2:
 			muts=line
@@ -166,8 +167,11 @@ def get_distributions(all_covered, missense_header, coverage_list, alternate_lis
 			alt_value=int(float(alt_line[column_number]))
 			if cov_value>=coverage_threshold and alt_value>=alternate_threshold:
 				count_dict[mut]=count_dict.setdefault(mut, 0)+1
+			elif cov_value>=coverage_threshold:
+				total_count+=1
 	for mut in special_sort(list(count_dict.keys())):
 		output_file.write(mut+'\t'+str(count_dict[mut])+'\n')
+	output_file.write('total coverage\t'+str(total_count)+'\n')
 
 def write_final(output_path, results, index_number):
 	output_file=open(output_path, 'w')
