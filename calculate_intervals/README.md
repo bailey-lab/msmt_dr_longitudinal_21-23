@@ -5,6 +5,8 @@ steps of the pipeline, specifically the
 year_cov_alt_output/prevalence_summary.tsv files found in the
 AA_table_visualization folder. The outputs are prevalence tables that also
 contain confidence intervals, and are stored in confidence_interval_outputs.
+Also outputs an aggregated table across years for candidate and validated k13
+mutations.
 
 The script is executed with
 `bash
