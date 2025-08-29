@@ -16,6 +16,7 @@ hardcoded.
 
 coverage_input=snakemake.input.coverage_input
 alternate_input=snakemake.input.alternate_input
+metadata_path=snakemake.input.metadata
 coverage_threshold=snakemake.params.coverage_threshold
 alternate_threshold=snakemake.params.alternate_threshold
 propeller_start=snakemake.params.propeller_start
@@ -142,11 +143,24 @@ def write_covered(all_covered, missense_header, value_list, output_path):
 
 def special_sort(mut_list):
 	sorting_list=[]
-	for mut in mut_list:
+	for mut_district in mut_list:
+		mut=mut_district.split('_')[0]
 		gene='-'.join(mut.split('-')[:-1])
 		pos=int(mut.split('-')[-1][3:-3])
-		sorting_list.append([gene, pos, mut])
+		sorting_list.append([gene, pos, mut_district])
 	return [item[-1] for item in sorted(sorting_list)]
+
+def make_district_dict(metadata_path):
+	'''
+	looks up the district associated with each sample
+	'''
+	district_dict={}
+	for line_number, line in enumerate(open(metadata_path)):
+		if line_number>0:
+			line=line.strip().split(',')
+			district_dict[line[0]]=line[4]
+	return district_dict
+
 
 def get_distributions(all_covered, missense_header, coverage_list, alternate_list, output_path):
 	'''
@@ -155,23 +169,27 @@ def get_distributions(all_covered, missense_header, coverage_list, alternate_lis
 	output_file=open(output_path, 'w')
 	count_dict={}
 	total_count=0
+	district_dict=make_district_dict(metadata_path)
+	coverage_dict={}
 	for line_number, line in enumerate(missense_header):
 		if line_number==2:
 			muts=line
 			print('muts are', muts)
 	for line_number, cov_line in enumerate(coverage_list):
+		district=district_dict[cov_line[0]]
 		alt_line=alternate_list[line_number]
 		for column_number in all_covered[1:]:
-			mut=muts[column_number]
+			mut_district=muts[column_number]+'_'+district
 			cov_value=int(float(cov_line[column_number]))
 			alt_value=int(float(alt_line[column_number]))
 			if cov_value>=coverage_threshold and alt_value>=alternate_threshold:
-				count_dict[mut]=count_dict.setdefault(mut, 0)+1
+				count_dict[mut_district]=count_dict.setdefault(mut_district, 0)+1
 			elif cov_value>=coverage_threshold:
-				total_count+=1
+				coverage_dict[district]=coverage_dict.setdefault(district, 0)+1
 	for mut in special_sort(list(count_dict.keys())):
-		output_file.write(mut+'\t'+str(count_dict[mut])+'\n')
-	output_file.write('total coverage\t'+str(total_count)+'\n')
+		output_file.write('\t'.join(mut.split('_'))+'\t'+str(count_dict[mut])+'\n')
+	for district in coverage_dict:
+		output_file.write(district+' total\t'+str(coverage_dict[district])+'\n')
 
 def write_final(output_path, results, index_number):
 	output_file=open(output_path, 'w')

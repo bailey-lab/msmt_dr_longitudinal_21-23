@@ -13,7 +13,8 @@ rule all:
 rule plot_noncanonical_k13:
 	input:
 		coverage_input='canonical_AA_tables/{year}_AA_tables/coverage_AA_table.csv',
-		alternate_input='canonical_AA_tables/{year}_AA_tables/alternate_AA_table.csv'
+		alternate_input='canonical_AA_tables/{year}_AA_tables/alternate_AA_table.csv',
+		metadata='cleaned_metadata/{year}_cleaned_kagera_metadata.csv'
 	params:
 		coverage_threshold=10,
 		alternate_threshold=3,

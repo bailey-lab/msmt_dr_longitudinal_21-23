@@ -1,8 +1,16 @@
-k13-Ile352Thr	1
-k13-His384Arg	4
-k13-Pro419Ser	5
-k13-Val555Ala	3
-k13-Pro667Arg	2
-k13-Pro667Ser	2
-k13-Phe699Cys	3
-total coverage	7639
+k13-Ile352Thr	Ngara	1
+k13-His384Arg	Karagwe	4
+k13-Pro419Ser	Karagwe	5
+k13-Val555Ala	Ngara	3
+k13-Pro667Arg	Karagwe	1
+k13-Pro667Arg	Kyerwa	1
+k13-Pro667Ser	Ngara	2
+k13-Phe699Cys	Karagwe	2
+k13-Phe699Cys	Kyerwa	1
+Karagwe total	1600
+Kyerwa total	1340
+Muleba total	1989
+Bukoba DC total	463
+Ngara total	1656
+Misenyi total	311
+Biharamulo total	280
