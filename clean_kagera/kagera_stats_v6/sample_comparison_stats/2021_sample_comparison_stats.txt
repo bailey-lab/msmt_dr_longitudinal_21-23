@@ -1,8 +1,0 @@
-
-
-year is 2021
-AA sample size is 942
-AA with metadata is 942
-AA with metadata and fastq is 942
-fastq with metadata is 989
-extra fastq is 8348

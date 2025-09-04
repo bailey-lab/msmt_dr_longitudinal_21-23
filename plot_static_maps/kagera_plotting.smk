@@ -32,8 +32,8 @@ min_long=30.3
 max_long=32
 min_lat=-3.4
 max_lat=-0.89
-year='2021'
-threshold='3_1'
+year='2023'
+threshold='10_3'
 prevalence_file='/home/alfred/msmt_re_analysis_with_cleaned_metadata/v3_08-11-25_official_ms_github/msmt_dr_longitudinal_21-23/AA_table_visualization/'+year+'_'+threshold+'_output/prevalence_summary.tsv'
 
 
