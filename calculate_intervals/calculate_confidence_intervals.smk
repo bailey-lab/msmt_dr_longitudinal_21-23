@@ -37,7 +37,7 @@ rule validated_prevalences:
 	output:
 		validated_prevalences=output_folder+'/validated_k13_prevalences.tsv'
 	script:
-		'scripts/generate_validated_prevalences.py'
+		'scripts/generate_validated_prevalences_v2.py'
 
 rule key_DR_prevalences:
 	'''
@@ -51,4 +51,4 @@ rule key_DR_prevalences:
 	output:
 		validated_prevalences=output_folder+'/validated_non-k13_prevalences.tsv'
 	script:
-		'scripts/generate_key_DR_prevalences.py'
+		'scripts/generate_key_DR_prevalences_v2.py'

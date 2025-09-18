@@ -11,13 +11,16 @@ def format_line(location, latitude, longitude, mut_values, outuput_table):
 	[location, latitude, longitude],
 	[location, latitude, longitude]]
 	for mut_value in mut_values:
-		alt_count, cov_count=map(float, mut_value.split(' ')[1][1:-1].split('/'))
+		alt_count, cov_count=map(int, mut_value.split(' ')[1][1:-1].split('/'))
 		if cov_count>0:
 			lower_bound, upper_bound=proportion_confint(count=alt_count, nobs=cov_count, alpha=0.1)
 			lower_bound, upper_bound=round(lower_bound*100, 1), round(upper_bound*100, 1)
 			output_lines[0].append(f'{alt_count}/{cov_count}')
-			output_lines[1].append(f'{round(alt_count/cov_count*100, 1)}%')
-			output_lines[2].append(f'{lower_bound}%-{upper_bound}%')
+			output_lines[1].append(f'{round(alt_count/cov_count*100, 1)}')
+			if alt_count>0:
+				output_lines[2].append(f'{lower_bound}-{upper_bound}')
+			else:
+				output_lines[2].append('')
 		else:
 			output_lines[0].append(f'no coverage')
 			output_lines[1].append(f'no coverage')
