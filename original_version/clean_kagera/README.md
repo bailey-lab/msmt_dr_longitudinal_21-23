@@ -25,3 +25,9 @@ manuscript. The final outputs are:
  - kagera_stats_v6/cleaned_filtered_AA_tables
  - kagera_stats_v6/fastq_filenames
  - kagera_stats_v6/cleaned_metadata
+
+For purposes of the manuscript, "attempted" samples are those found in the
+tables of cleaned_metadata, and represent samples that have both fastq files and
+metadata available after applying all rounds of manual corrections. "Successful"
+samples are those that have fastq files, metadata, and output AA tables. Only
+successful samples have been deposited in sra.
