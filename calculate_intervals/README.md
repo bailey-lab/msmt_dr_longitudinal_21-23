@@ -4,7 +4,7 @@ This step calculates confidence intervals on the prevalences reported in earlier
 steps of the pipeline, specifically the
 year_cov_alt_output/prevalence_summary.tsv files found in the
 AA_table_visualization folder. The outputs are prevalence tables that also
-contain confidence intervals, and are stored in confidence_interval_outputs.
+contain confidence intervals, and are stored in confidence_interval_outputs_exact_95p_avgs.
 Also outputs an aggregated table across years for candidate and validated k13
 mutations, and a similar aggregated table for known drug resistance mutations.
 Finally, there is a very hacky (and manual) script (scripts/mdr1_confints.py)
@@ -14,7 +14,7 @@ intervals associated with these prevalences.
 
 The main snakemake script is executed with
 `bash
-snakemake -s calculate_confidence_intervals.smk --cores 4 --use-conda
+snakemake -s calculate_confidence_intervals_v2.smk --cores 4 --use-conda
 `
 and assumes a hardcoded input folder of ../AA_table_visualization
 
