@@ -33,3 +33,6 @@ corrections described above. "Successful" samples are found in the
 cleaned_filtered_AA_tables folder, and represent those that have fastq files,
 metadata, and output AA tables. Only successful samples have been deposited in
 sra.
+
+To reproduce the complex haplotypes found in some of the supplements, check out
+original_version/clean_kagera/kagera_stats_v6/complex_haplotypes

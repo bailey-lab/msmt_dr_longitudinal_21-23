@@ -4,7 +4,7 @@ validated and candidate k13 mutations into a table.
 '''
 
 input_folder='../AA_table_visualization'
-output_folder='confidence_interval_outputs_exact_95p_avgs'
+output_folder='confidence_interval_outputs_exact_95p_avgs_alt_thresholds'
 
 key_non_k13=['dhfr-ts-Ala16Val', 'dhfr-ts-Asn51Ile', 'dhfr-ts-Cys59Arg',
 'dhfr-ts-Ile164Leu', 'dhfr-ts-Ser108Asn', 'dhfr-ts-Ser108Thr',
@@ -26,11 +26,12 @@ key_k13=['k13-Pro441Leu', 'k13-Phe446Ile', 'k13-Gly449Ala',
 
 rule all:
 	input:
-		validated_key=output_folder+'/validated_non-k13_prevalences_v2.tsv',
-		validated_k13=output_folder+'/validated_k13_prevalences_v2.tsv',
+		validated_key=output_folder+'/validated_non-k13_prevalences_3_1_v2.tsv',
+		validated_key_alt=output_folder+'/validated_non-k13_prevalences_10_3_v2.tsv',
+		validated_k13=output_folder+'/validated_k13_prevalences_3_1_v2.tsv',
+		validated_k13_alt=output_folder+'/validated_k13_prevalences_10_3_v2.tsv',
 		validated_k13_noCI=output_folder+'/validated_k13_prevalences_noCI.tsv',
 		validated_noCI=output_folder+'/validated_non-k13_prevalences_noCI.tsv'
-
 
 rule calculate_confidence_intervals:
 	'''
@@ -57,11 +58,30 @@ rule validated_prevalences:
 		all_intervals=expand(output_folder+'/{year}_{threshold}_CIs/{year}_{threshold}_confidence_intervals.tsv', year=['2021', '2022', '2023'], threshold=['10_3', '3_1'])
 	params:
 		interval_folder=output_folder,
-		key_muts=key_k13
+		key_muts=key_k13,
+		threshold='3_1'
 	output:
-		validated_prevalences=output_folder+'/validated_k13_prevalences_v2.tsv'
+		validated_prevalences=output_folder+'/validated_k13_prevalences_3_1_v2.tsv'
 	script:
 		'scripts/generate_key_DR_prevalences_v2.py'
+
+rule validated_prevalences_alt_threshold:
+	'''
+	reformats confidence intervals/prevalences associated with candidate and
+	validated k13 mutations and aggregates these across years into a single
+	table.
+	'''
+	input:
+		all_intervals=expand(output_folder+'/{year}_{threshold}_CIs/{year}_{threshold}_confidence_intervals.tsv', year=['2021', '2022', '2023'], threshold=['10_3', '3_1'])
+	params:
+		interval_folder=output_folder,
+		key_muts=key_k13,
+		threshold='10_3'
+	output:
+		validated_prevalences=output_folder+'/validated_k13_prevalences_10_3_v2.tsv'
+	script:
+		'scripts/generate_key_DR_prevalences_v2.py'
+
 
 rule key_DR_prevalences:
 	'''
@@ -72,11 +92,29 @@ rule key_DR_prevalences:
 		all_intervals=expand(output_folder+'/{year}_{threshold}_CIs/{year}_{threshold}_confidence_intervals.tsv', year=['2021', '2022', '2023'], threshold=['10_3', '3_1'])
 	params:
 		interval_folder=output_folder,
-		key_muts=key_non_k13
+		key_muts=key_non_k13,
+		threshold='3_1'
 	output:
-		validated_prevalences=output_folder+'/validated_non-k13_prevalences_v2.tsv'
+		validated_prevalences=output_folder+'/validated_non-k13_prevalences_3_1_v2.tsv'
 	script:
 		'scripts/generate_key_DR_prevalences_v2.py'
+
+rule key_DR_prevalences_alt_threshold:
+	'''
+	reformats confidence intervals/prevalences associated with validated non-k13
+	mutations and aggregates these across years into a single table.
+	'''
+	input:
+		all_intervals=expand(output_folder+'/{year}_{threshold}_CIs/{year}_{threshold}_confidence_intervals.tsv', year=['2021', '2022', '2023'], threshold=['10_3', '3_1'])
+	params:
+		interval_folder=output_folder,
+		key_muts=key_non_k13,
+		threshold='10_3'
+	output:
+		validated_prevalences=output_folder+'/validated_non-k13_prevalences_10_3_v2.tsv'
+	script:
+		'scripts/generate_key_DR_prevalences_v2.py'
+
 
 rule validated_no_CI:
 	'''

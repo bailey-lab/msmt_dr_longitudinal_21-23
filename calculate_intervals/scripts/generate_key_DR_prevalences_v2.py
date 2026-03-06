@@ -6,6 +6,7 @@ with three columns to match the 3 prevalence values in table 1 of the study.
 output_path=snakemake.output.validated_prevalences
 CI_folder=snakemake.params.interval_folder
 key_muts=snakemake.params.key_muts
+threshold=snakemake.params.threshold
 
 all_districts=['Biharamulo', 'Bukoba DC', 'Karagwe', 'Kyerwa', 'Misenyi', 'Muleba', 'Ngara']
 
@@ -20,7 +21,7 @@ def special_sort(mut_list):
 def populate_dict(CI_folder):
 	prev_dict, all_muts={}, set([])
 	for year in ['2021', '2022', '2023']:
-		prevalence_table=CI_folder+f'/{year}_3_1_CIs/{year}_3_1_confidence_intervals.tsv'
+		prevalence_table=CI_folder+f'/{year}_{threshold}_CIs/{year}_{threshold}_confidence_intervals.tsv'
 		for line_number, line in enumerate(open(prevalence_table)):
 			line=line.strip().split('\t')
 			if line_number==0:
