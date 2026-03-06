@@ -1,0 +1,6 @@
+Gene ID,PF3D7_0523000,PF3D7_0523000,hybrid,hybrid
+Gene,mdr1,mdr1,hybrid,hybrid
+Mutation Name,mdr1-NFD1ANY,mdr1-NFD1PUR,sulfa-SUP1ANY,sulfa-SUP1PUR
+ExonicFunc,missense_variant,missense_variant,missense_variant,missense_variant
+AA Change,NFD1ANY,NFD1PUR,SUP1ANY,SUP1PUR
+Targeted,Yes,Yes,Yes,Yes
